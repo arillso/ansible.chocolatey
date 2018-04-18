@@ -4,6 +4,8 @@
 
 ## Description
 
+Manage the Chocolatey Source list.
+
 ## Installation
 
 ```bash
@@ -12,14 +14,23 @@ ansible-galaxy install arillso.chocolatey
 
 ## Requirements
 
+None
+
 ## Role Variables
 
-| Variable             | Default     | Comments (type)                                   |
-| :---                 | :---        | :---                                              |
-| | | |
-| | | |
+```yml
+chocolatey_source:
+  - name: chocolatey
+    source: https://chocolatey.org/api/v2/
+    user:
+    password:
+    priority: 0
+    state: present
+```
 
 ## Dependencies
+
+None
 
 ## Example Playbook
 
@@ -31,6 +42,10 @@ ansible-galaxy install arillso.chocolatey
 
 ## Changelog
 
+### 1.0
+
+* initial commit
+
 ## Author
 
 * [Simon Bärlocher](https://sbaerlocher.ch)
@@ -41,4 +56,4 @@ This project is under the MIT License. See the [LICENSE](https://sbaerlo.ch/lice
 
 ## Copyright
 
-(c) 2017, Simon Bärlocher
+(c) 2018, Simon Bärlocher

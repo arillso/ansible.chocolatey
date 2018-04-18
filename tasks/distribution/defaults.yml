@@ -1,6 +1,0 @@
----
-# tasks file for arillso.chocolatey
-
-- name: Message
-  debug:
-    msg: "Your {{ ansible_system }} is not supported"
