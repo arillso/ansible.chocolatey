@@ -1,2 +1,10 @@
 ---
 # defaults file for arillso.chocolatey
+
+chocolatey_source:
+  - name: chocolatey
+    source: https://chocolatey.org/api/v2/
+    user:
+    password:
+    priority: 0
+    state: present
