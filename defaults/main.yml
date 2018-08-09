@@ -8,3 +8,6 @@ chocolatey_source:
     password:
     priority: 0
     state: present
+
+chocolatey_config:
+  - commandExecutionTimeoutSeconds: 2700

@@ -4,7 +4,7 @@
 
 ## Description
 
-Manage the Chocolatey Source list.
+Manage the Chocolatey Source list and config.
 
 ## Installation
 
@@ -28,6 +28,11 @@ chocolatey_source:
     state: present
 ```
 
+```yml
+chocolatey_config:
+  - commandExecutionTimeoutSeconds: 2700
+```
+
 ## Dependencies
 
 None
@@ -42,7 +47,12 @@ None
 
 ## Changelog
 
-### 1.0
+### 1.1.0
+
+* add support for choco config
+* add change remove source when absent
+
+### 1.0.0
 
 * initial commit
 

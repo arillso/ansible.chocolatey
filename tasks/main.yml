@@ -9,7 +9,7 @@
     - packages
 
 - name: Chocolatey source absent
-  win_shell: "choco source disable -n {{ item.name }}"
+  win_shell: "choco source remove -n {{ item.name }}"
   with_items: "{{ chocolatey_source }}"
   when: item.name is defined and item.state == 'absent'
   tags:
@@ -19,5 +19,19 @@
   win_shell: "choco source add -n={{ item.name }} -s={{ item.source }} -u={{ item.user }} -p={{ item.password }} --priority={{ item.priority | default('0') }}"
   with_items: "{{ chocolatey_source }}"
   when: item.name is defined and item.state == 'present'
+  tags:
+    - configuration
+
+- name: Chocolatey Configuration
+  win_shell: "choco config set --name {{ item.key }} --value {{ item.value }}"
+  with_dict: "{{ chocolatey_config }}"
+  when: item.value != None
+  tags:
+    - configuration
+
+- name: Chocolatey Configuration set default
+  win_shell: "choco config unset --name {{ item.key }}"
+  with_dict: "{{ chocolatey_config }}"
+  when: item.value == None
   tags:
     - configuration
