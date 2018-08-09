@@ -9,7 +9,7 @@
     - packages
 
 - name: Chocolatey source absent
-  win_shell: "choco source disable -n {{ item.name }}"
+  win_shell: "choco source remove -n {{ item.name }}"
   with_items: "{{ chocolatey_source }}"
   when: item.name is defined and item.state == 'absent'
   tags:
