@@ -35,3 +35,17 @@
   when: item.value == None
   tags:
     - configuration
+
+- name: Chocolatey feature enable
+  win_shell: "choco feature enable -n={{ item.key }}"
+  with_dict: "{{ chocolatey_feature }}"
+  when: item.value
+  tags:
+    - configuration
+
+- name: Chocolatey feature disable set default
+  win_shell: "choco feature disable -n={{ item.key }}"
+  with_dict: "{{ chocolatey_feature }}"
+  when: not item.value
+  tags:
+    - configuration

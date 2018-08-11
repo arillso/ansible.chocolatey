@@ -33,6 +33,11 @@ chocolatey_config:
   - commandExecutionTimeoutSeconds: 2700
 ```
 
+```yml
+chocolatey_feature:
+  - useRememberedArgumentsForUpgrades: true
+```
+
 ## Dependencies
 
 None
@@ -46,6 +51,10 @@ None
 ```
 
 ## Changelog
+
+### 1.2.0
+
+* add support chocolatey feature
 
 ### 1.1.0
 
