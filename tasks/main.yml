@@ -8,17 +8,17 @@
   tags:
     - packages
 
-- name: Chocolatey source absent
-  win_shell: "choco source remove -n {{ item.name }}"
-  with_items: "{{ chocolatey_source }}"
-  when: item.name is defined and item.state == 'absent'
-  tags:
-    - configuration
-
 - name: Chocolatey source present
   win_shell: "choco source add -n={{ item.name }} -s={{ item.source }} -u={{ item.user }} -p={{ item.password }} --priority={{ item.priority | default('0') }}"
   with_items: "{{ chocolatey_source }}"
   when: item.name is defined and item.state == 'present'
+  tags:
+    - configuration
+
+- name: Chocolatey source absent
+  win_shell: "choco source remove -n {{ item.name }}"
+  with_items: "{{ chocolatey_source }}"
+  when: item.name is defined and item.state == 'absent'
   tags:
     - configuration
 
