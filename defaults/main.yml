@@ -15,4 +15,5 @@ chocolatey_config:
 chocolatey_feature:
   - useRememberedArgumentsForUpgrades: true
 
+chocolatey_state: downgrade
 chocolatey_version: 0.10.11

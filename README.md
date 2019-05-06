@@ -39,6 +39,7 @@ chocolatey_feature:
 ```
 
 ```yml
+chocolatey_state: downgrade
 chocolatey_version: 0.10.11
 ```
 

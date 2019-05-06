@@ -4,7 +4,7 @@
 - name: Install chocolatey
   win_chocolatey:
     name: chocolatey
-    state: "{{ 'latest' if chocolatey_version == 'latest' else 'present' }}"
+    state: '{{ chocolatey_state }}'
     version: "{{ chocolatey_version if chocolatey_version != 'latest' else '' }}"
   tags:
     - packages
