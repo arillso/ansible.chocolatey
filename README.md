@@ -38,6 +38,10 @@ chocolatey_feature:
   - useRememberedArgumentsForUpgrades: true
 ```
 
+```yml
+chocolatey_version: 0.10.11
+```
+
 ## Dependencies
 
 None
@@ -47,27 +51,27 @@ None
 ```yml
 - hosts: all
   roles:
-     - arillso.chocolatey
+    - arillso.chocolatey
 ```
 
 ## Changelog
 
 ### 1.2.0
 
-* add support chocolatey feature
+- add support chocolatey feature
 
 ### 1.1.0
 
-* add support for choco config
-* add change remove source when absent
+- add support for choco config
+- add change remove source when absent
 
 ### 1.0.0
 
-* initial commit
+- initial commit
 
 ## Author
 
-* [Simon Bärlocher](https://sbaerlocher.ch)
+- [Simon Bärlocher](https://sbaerlocher.ch)
 
 ## License
 
