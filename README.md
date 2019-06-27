@@ -21,11 +21,17 @@ None
 ```yml
 chocolatey_source:
   - name: chocolatey
+    admin_only: false
+    allow_self_service: false
+    bypass_proxy: false
+    certificate:
+    certificate_password:
     source: https://chocolatey.org/api/v2/
     user:
     password:
     priority: 0
     state: present
+    update_password: always
 ```
 
 ```yml
@@ -56,6 +62,13 @@ None
 ```
 
 ## Changelog
+
+### 1.3.0
+
+- update min ansible version to 2.7
+- make chocolatey config idempotent
+- switch to using win_chocolatey* modules
+- add chocolatey to windows path
 
 ### 1.2.0
 

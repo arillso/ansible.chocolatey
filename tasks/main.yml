@@ -9,44 +9,64 @@
   tags:
     - packages
 
-- name: Chocolatey source present
-  win_shell: "choco source add -n={{ item.name }} -s={{ item.source }} -u={{ item.user }} -p={{ item.password }} --priority={{ item.priority | default('0') }}"
+- name: Add chocolatey to PATH
+  win_path:
+    name: PATH
+    elements: '%PROGRAMDATA%\chocolatey\bin'
+    scope: machine
+    state: present
+
+- name: Setup chocolatey source
+  win_chocolatey_source:
+    admin_only: "{{ item.admin_only | default(omit) }}"
+    allow_self_service: "{{ item.allow_self_service | default(omit) }}"
+    bypass_proxy: "{{ item.bypass_proxy | default(omit) }}"
+    certificate: "{{ item.certificate | default(omit) }}"
+    certificate_password: "{{ item.certificate_password | default(omit) }}"
+    name: "{{ item.name }}"
+    priority: "{{ item.priority | default(omit) }}"
+    state: "{{ item.state }}"
+    source: "{{ item.source }}"
+    source_username: "{{ item.user | default(omit) }}"
+    source_password: "{{ item.password | default(omit) }}"
+    update_password: "{{ item.update_password | default(omit) }}"
   with_items: '{{ chocolatey_source }}'
-  when: item.name is defined and item.state == 'present'
   tags:
     - configuration
 
-- name: Chocolatey source absent
-  win_shell: 'choco source remove -n {{ item.name }}'
-  with_items: '{{ chocolatey_source }}'
-  when: item.name is defined and item.state == 'absent'
-  tags:
-    - configuration
-
-- name: Chocolatey Configuration
-  win_shell: 'choco config set --name {{ item.key }} --value {{ item.value }}'
+- name: Chocolatey configuration
+  win_chocolatey_config:
+    name: "{{ item.key }}"
+    state: "present"
+    value: "{{ item.value }}"
   with_dict: '{{ chocolatey_config }}'
   when: item.value != None
   tags:
     - configuration
 
-- name: Chocolatey Configuration set default
-  win_shell: 'choco config unset --name {{ item.key }}'
+- name: Chocolatey configuration set default
+  win_chocolatey_config:
+    name: "{{ item.key }}"
+    state: "absent"
   with_dict: '{{ chocolatey_config }}'
   when: item.value == None
   tags:
     - configuration
 
 - name: Chocolatey feature enable
-  win_shell: 'choco feature enable -n={{ item.key }}'
+  win_chocolatey_feature:
+    name: "{{ item.key }}"
+    state: "enabled"
   with_dict: '{{ chocolatey_feature }}'
-  when: item.value
+  when: item.value | bool
   tags:
     - configuration
 
 - name: Chocolatey feature disable set default
-  win_shell: 'choco feature disable -n={{ item.key }}'
+  win_chocolatey_feature:
+    name: "{{ item.key }}"
+    state: "disabled"
   with_dict: '{{ chocolatey_feature }}'
-  when: not item.value
+  when: not item.value | bool
   tags:
     - configuration

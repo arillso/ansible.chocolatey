@@ -4,8 +4,6 @@
 chocolatey_source:
   - name: chocolatey
     source: https://chocolatey.org/api/v2/
-    user:
-    password:
     priority: 0
     state: present
 
@@ -13,7 +11,7 @@ chocolatey_config:
   - commandExecutionTimeoutSeconds: 2700
 
 chocolatey_feature:
-  - useRememberedArgumentsForUpgrades: true
+  - useRememberedArgumentsForUpgrades: false
 
 chocolatey_state: downgrade
 chocolatey_version: 0.10.11

@@ -1,15 +1,17 @@
 ---
 
 galaxy_info:
-  author: Simon Baerlocher <sbaerlocher@sbaerlocher.ch
-  description: Manage the Chocolatey Source list.
+  author: Simon Baerlocher <sbaerlocher@sbaerlocher.ch>
+  description: Manage the Chocolatey
   license: MIT
-  min_ansible_version: 2.5
+  min_ansible_version: 2.7
   platforms:
     - name: Windows
       versions:
         - all
   galaxy_tags:
     - windows
+    - chocolatey
+    - package
 
 dependencies: []
