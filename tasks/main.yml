@@ -4,8 +4,6 @@
 - name: Install chocolatey
   win_chocolatey:
     name: chocolatey
-    state: '{{ chocolatey_state }}'
-    version: "{{ chocolatey_version if chocolatey_version != 'latest' else '' }}"
   tags:
     - packages
 
@@ -15,30 +13,32 @@
     elements: '%PROGRAMDATA%\chocolatey\bin'
     scope: machine
     state: present
+  tags:
+    - configuration
 
 - name: Setup chocolatey source
   win_chocolatey_source:
-    admin_only: "{{ item.admin_only | default(omit) }}"
-    allow_self_service: "{{ item.allow_self_service | default(omit) }}"
-    bypass_proxy: "{{ item.bypass_proxy | default(omit) }}"
-    certificate: "{{ item.certificate | default(omit) }}"
-    certificate_password: "{{ item.certificate_password | default(omit) }}"
-    name: "{{ item.name }}"
-    priority: "{{ item.priority | default(omit) }}"
-    state: "{{ item.state }}"
-    source: "{{ item.source }}"
-    source_username: "{{ item.user | default(omit) }}"
-    source_password: "{{ item.password | default(omit) }}"
-    update_password: "{{ item.update_password | default(omit) }}"
+    admin_only: '{{ item.admin_only | default(omit) }}'
+    allow_self_service: '{{ item.allow_self_service | default(omit) }}'
+    bypass_proxy: '{{ item.bypass_proxy | default(omit) }}'
+    certificate: '{{ item.certificate | default(omit) }}'
+    certificate_password: '{{ item.certificate_password | default(omit) }}'
+    name: '{{ item.name }}'
+    priority: '{{ item.priority | default(omit) }}'
+    state: '{{ item.state }}'
+    source: '{{ item.source }}'
+    source_username: '{{ item.user | default(omit) }}'
+    source_password: '{{ item.password | default(omit) }}'
+    update_password: '{{ item.update_password | default(omit) }}'
   with_items: '{{ chocolatey_source }}'
   tags:
     - configuration
 
 - name: Chocolatey configuration
   win_chocolatey_config:
-    name: "{{ item.key }}"
-    state: "present"
-    value: "{{ item.value }}"
+    name: '{{ item.key }}'
+    state: 'present'
+    value: '{{ item.value }}'
   with_dict: '{{ chocolatey_config }}'
   when: item.value != None
   tags:
@@ -46,8 +46,8 @@
 
 - name: Chocolatey configuration set default
   win_chocolatey_config:
-    name: "{{ item.key }}"
-    state: "absent"
+    name: '{{ item.key }}'
+    state: 'absent'
   with_dict: '{{ chocolatey_config }}'
   when: item.value == None
   tags:
@@ -55,8 +55,8 @@
 
 - name: Chocolatey feature enable
   win_chocolatey_feature:
-    name: "{{ item.key }}"
-    state: "enabled"
+    name: '{{ item.key }}'
+    state: 'enabled'
   with_dict: '{{ chocolatey_feature }}'
   when: item.value | bool
   tags:
@@ -64,8 +64,8 @@
 
 - name: Chocolatey feature disable set default
   win_chocolatey_feature:
-    name: "{{ item.key }}"
-    state: "disabled"
+    name: '{{ item.key }}'
+    state: 'disabled'
   with_dict: '{{ chocolatey_feature }}'
   when: not item.value | bool
   tags:

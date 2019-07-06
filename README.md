@@ -1,6 +1,6 @@
 # Ansible Role: chocolatey
 
-[![Build Status](https://travis-ci.org/arillso/ansible.chocolatey.svg?branch=master)](https://travis-ci.org/arillso/ansible.chocolatey) [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://sbaerlo.ch/licence) [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-chocolatey-blue.svg)](https://galaxy.ansible.com/arillso/chocolatey)
+[![Build Status](https://img.shields.io/travis/arillso/ansible.chocolatey.svg?branch=master&style=popout-square)](https://travis-ci.org/arillso/ansible.chocolatey) [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=popout-square)](https://sbaerlo.ch/licence) [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-chocolatey-blue.svg?style=popout-square)](https://galaxy.ansible.com/arillso/chocolatey) [![Ansible Role](https://img.shields.io/ansible/role/d/25136.svg?style=popout-square)](https://galaxy.ansible.com/arillso/chocolatey)
 
 ## Description
 
@@ -18,35 +18,54 @@ None
 
 ## Role Variables
 
+### Source
+
+A list of possible Chocolatey repositories that can be added or removed.
+
+| Parameter                                                      | Spalte 2                                                                                                                                                                                                |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name                                                           | The name of the source. Required with actions other than list.                                                                                                                                          |
+| admin_only                                                     | Makes the source visible to Administrators only.                                                                                                                                                        |
+| allow_self_service                                             | Allow the source to be used with self-service                                                                                                                                                           |
+| bypass_proxy                                                   | Bypass the proxy when using this source.                                                                                                                                                                |
+| certificate                                                    | The path to a .pfx file to use for X509 authenticated feeds.                                                                                                                                            |
+| certificate_password The password for certificate if required. |
+| source                                                         | The file/folder/url of the source.                                                                                                                                                                      |
+| user                                                           | The username used to access source.                                                                                                                                                                     |
+| password                                                       | The password for source_username.                                                                                                                                                                       |
+| priority                                                       | The priority order of this source compared to other sources, lower is better. All priorities above 0 will be evaluated first then zero-based values will be evaluated in config file order.             |
+| state                                                          | absent, will remove the source. disabled, will ensure the source exists but is disabled. present, will ensure the source exists and is enabled.                                                         |
+| update_password                                                | always, the module will always set the password and report a change if certificate_password or source_password is set. on_create, the module will only set the password if the source is being created. |
+
 ```yml
 chocolatey_source:
   - name: chocolatey
-    admin_only: false
-    allow_self_service: false
-    bypass_proxy: false
-    certificate:
-    certificate_password:
     source: https://chocolatey.org/api/v2/
-    user:
-    password:
     priority: 0
     state: present
-    update_password: always
 ```
+
+### Config
+
+There are settings that can adjust the way Chocolatey works for you
+See: [https://chocolatey.org/docs/chocolatey-configuration#config-settings](https://chocolatey.org/docs/chocolatey-configuration#config-settings)
 
 ```yml
 chocolatey_config:
+  # Default timeout for command execution
   - commandExecutionTimeoutSeconds: 2700
 ```
 
-```yml
-chocolatey_feature:
-  - useRememberedArgumentsForUpgrades: true
-```
+### feature
+
+There are functions that can adjust the way Chocolatey works for you
+See: [https://chocolatey.org/docs/chocolatey-configuration#features](https://chocolatey.org/docs/chocolatey-configuration#features)
 
 ```yml
-chocolatey_state: downgrade
-chocolatey_version: 0.10.11
+chocolatey_feature:
+  - useRememberedArgumentsForUpgrades: false
+  - usePackage0RepositoryOptimizations: false
+  - useEnhancedExitCodes: false
 ```
 
 ## Dependencies
@@ -61,28 +80,6 @@ None
     - arillso.chocolatey
 ```
 
-## Changelog
-
-### 1.3.0
-
-- update min ansible version to 2.7
-- make chocolatey config idempotent
-- switch to using win_chocolatey* modules
-- add chocolatey to windows path
-
-### 1.2.0
-
-- add support chocolatey feature
-
-### 1.1.0
-
-- add support for choco config
-- add change remove source when absent
-
-### 1.0.0
-
-- initial commit
-
 ## Author
 
 - [Simon Bärlocher](https://sbaerlocher.ch)
@@ -93,4 +90,4 @@ This project is under the MIT License. See the [LICENSE](https://sbaerlo.ch/lice
 
 ## Copyright
 
-(c) 2018, Simon Bärlocher
+(c) 2019, Simon Bärlocher
