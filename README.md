@@ -4,7 +4,7 @@
 
 ## Description
 
-Manage the Chocolatey Source list and config.
+This role Optimizes and configures the package Manageter Chocolatey and sets several settings of the package manager under Windows.
 
 ## Installation
 
@@ -90,4 +90,4 @@ This project is under the MIT License. See the [LICENSE](https://sbaerlo.ch/lice
 
 ## Copyright
 
-(c) 2019, Simon Bärlocher
+(c) 2019, Arillso
