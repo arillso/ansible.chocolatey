@@ -4,7 +4,7 @@
 
 ## Description
 
-This role Optimizes and configures the package Manageter Chocolatey and sets several settings of the package manager under Windows.
+This role optimizes and configures the package manager Chocolatey and sets several settings of the package manager under Windows.
 
 ## Installation
 
@@ -47,7 +47,7 @@ chocolatey_source:
 
 ### Config
 
-There are settings that can adjust the way Chocolatey works for you
+There are settings that you can adjust in which way Chocolatey works for you.
 See: [https://chocolatey.org/docs/chocolatey-configuration#config-settings](https://chocolatey.org/docs/chocolatey-configuration#config-settings)
 
 ```yml
@@ -56,9 +56,9 @@ chocolatey_config:
   - commandExecutionTimeoutSeconds: 2700
 ```
 
-### feature
+### Features
 
-There are functions that can adjust the way Chocolatey works for you
+There are functions that you can adjust in which way Chocolatey works for you.
 See: [https://chocolatey.org/docs/chocolatey-configuration#features](https://chocolatey.org/docs/chocolatey-configuration#features)
 
 ```yml
