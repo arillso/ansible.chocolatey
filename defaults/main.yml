@@ -47,5 +47,5 @@ chocolatey_config:
 # See: https://chocolatey.org/docs/chocolatey-configuration#features
 chocolatey_feature:
   - useRememberedArgumentsForUpgrades: false
-  - usePackage0RepositoryOptimizations: false
+  - usePackageRepositoryOptimizations: false
   - useEnhancedExitCodes: false
