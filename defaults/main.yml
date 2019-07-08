@@ -1,17 +1,51 @@
 ---
 # defaults file for arillso.chocolatey
 
+# A list of possible Chocolatey repositories
+# that can be added or removed.
+#  name                  The name of the source. Required
+#                        with actions other than list.
+#  admin_only            Makes the source visible
+#                        to Administrators only.
+#  allow_self_service    Allow the source to be
+#                        used with self-service
+#  bypass_proxy          Bypass the proxy when
+#                        using this source.
+#  certificate         	 The path to a .pfx file
+#                        to use for X509 authenticated feeds.
+# certificate_password   The password for certificate if required.
+# source                 The file/folder/url of the source.
+# user                   The username used to access source.
+# password               The password for source_username.
+# priority               The priority order of this source
+#                        compared to other sources, lower is better.
+#                        All priorities above 0 will be evaluated first,
+#                        then zero-based values will be evaluated
+#                        in config file order.
+# state                  absent, will remove the source. disabled, will
+#                        ensure the source exists but is disabled.
+#                        present, will ensure the source
+#                        exists and is enabled.
+# update_password        always, the module will always set the
+#                        password and report a change if
+#                        certificate_password or source_password is set.
+#                        on_create, the module will only set the
+#                       password if the source is being created.
 chocolatey_source:
   - name: chocolatey
     source: https://chocolatey.org/api/v2/
     priority: 0
     state: present
 
+# There are settings that can adjust the way Chocolatey works for you
+# See: https://chocolatey.org/docs/chocolatey-configuration#config-settings
 chocolatey_config:
+  # Default timeout for command execution
   - commandExecutionTimeoutSeconds: 2700
 
+# There are functions that can adjust the way Chocolatey works for you
+# See: https://chocolatey.org/docs/chocolatey-configuration#features
 chocolatey_feature:
   - useRememberedArgumentsForUpgrades: false
-
-chocolatey_state: downgrade
-chocolatey_version: 0.10.11
+  - usePackageRepositoryOptimizations: false
+  - useEnhancedExitCodes: false

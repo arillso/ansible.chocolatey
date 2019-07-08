@@ -1,0 +1,6 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: arillso.chocolatey
+      when: ansible_os_family == 'Windows'
