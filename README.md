@@ -47,7 +47,7 @@ chocolatey_source:
 
 ### Config
 
-There are settings that you can adjust in which way Chocolatey works for you.
+There are settings that you can adjust in which way Chocolatey works for you.  
 See: [https://chocolatey.org/docs/chocolatey-configuration#config-settings](https://chocolatey.org/docs/chocolatey-configuration#config-settings)
 
 ```yml
@@ -58,7 +58,7 @@ chocolatey_config:
 
 ### Features
 
-There are functions that you can adjust in which way Chocolatey works for you.
+There are functions that you can adjust in which way Chocolatey works for you.  
 See: [https://chocolatey.org/docs/chocolatey-configuration#features](https://chocolatey.org/docs/chocolatey-configuration#features)
 
 ```yml
