@@ -7,46 +7,46 @@ and [human-readable changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
-- disable feature usePackage0RepositoryOptimizations and useEnhancedExitCodes default
-- changelog to your own file
-- travis file has been updated
+- Disabled features usePackage0RepositoryOptimizations and useEnhancedExitCodes default
+- Changelog is new in a own file
+- Travis file has been updated
 - Documentation has been improved
 
 ### Added
 
-- molecule testing
+- Molecule testing
 
 ### Fixed
 
-- add missing tags
+- Add missing tags
 
 ## 1.3.0
 
 ### Changed
 
-- update min ansible version to 2.7
-- make chocolatey config idempotent
-- switch to using win_chocolatey\* modules
+- Updated min ansible version to 2.7
+- Make chocolatey config idempotent
+- Switch to using win_chocolatey\* modules
 
 ### Added
 
-- add chocolatey to windows path
+- Add chocolatey to windows path
 
 ## 1.2.0
 
 ### Added
 
-- add support chocolatey feature
+- Add support chocolatey feature
 
 ## 1.1.0
 
 ### Added
 
-- add support for choco config
+- Add support for choco config
 
 ### Changed
 
-- add change remove source when absent
+- Add change remove source when absent
 
 ## 1.0.0
 
