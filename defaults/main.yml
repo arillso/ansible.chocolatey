@@ -46,6 +46,6 @@ chocolatey_config:
 # There are functions that can adjust the way Chocolatey works for you
 # See: https://chocolatey.org/docs/chocolatey-configuration#features
 chocolatey_feature:
-  - useRememberedArgumentsForUpgrades: false
+  - useRememberedArgumentsForUpgrades: true
   - usePackageRepositoryOptimizations: false
   - useEnhancedExitCodes: false
