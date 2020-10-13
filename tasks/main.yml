@@ -13,6 +13,7 @@
     elements: '%PROGRAMDATA%\chocolatey\bin'
     scope: machine
     state: present
+  register: register_choco_environment_path
   tags:
     - configuration
 
@@ -24,16 +25,16 @@
         state: restarted
       async: 60
       poll: 0
-      register: sshd_restart
+      register: register_sshd_restart
 
     - name: wait for connectivity to be resumed after sshd restart
       async_status:
-        jid: "{{ sshd_restart.ansible_job_id }}"
+        jid: '{{ register_sshd_restart.ansible_job_id }}'
       register: job_result
       until: job_result.finished
       retries: 60
       delay: 1
-  when: ansible_connection == "ssh" and envoirment_path.changed
+  when: ansible_connection == "ssh" and register_choco_environment_path.changed
 
 - name: Setup chocolatey source
   win_chocolatey_source:

@@ -1,6 +1,10 @@
 # Ansible Role: chocolatey
 
+<!-- markdownlint-disable MD013 -->
+
 [![Build Status](https://img.shields.io/travis/arillso/ansible.chocolatey.svg?branch=master&style=popout-square)](https://travis-ci.org/arillso/ansible.chocolatey) [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=popout-square)](https://sbaerlo.ch/licence) [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-chocolatey-blue.svg?style=popout-square)](https://galaxy.ansible.com/arillso/chocolatey) [![Ansible Role](https://img.shields.io/ansible/role/d/25136.svg?style=popout-square)](https://galaxy.ansible.com/arillso/chocolatey)
+
+<!-- markdownlint-enable MD013 -->
 
 ## Description
 
