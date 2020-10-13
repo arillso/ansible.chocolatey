@@ -16,6 +16,25 @@
   tags:
     - configuration
 
+- name: Restart sshd for ENV:PATH
+  block:
+    - name: restart sshd to reflect changes to PATH
+      win_service:
+        name: sshd
+        state: restarted
+      async: 60
+      poll: 0
+      register: sshd_restart
+
+    - name: wait for connectivity to be resumed after sshd restart
+      async_status:
+        jid: "{{ sshd_restart.ansible_job_id }}"
+      register: job_result
+      until: job_result.finished
+      retries: 60
+      delay: 1
+  when: ansible_connection == "ssh" and envoirment_path.changed
+
 - name: Setup chocolatey source
   win_chocolatey_source:
     admin_only: '{{ item.admin_only | default(omit) }}'
