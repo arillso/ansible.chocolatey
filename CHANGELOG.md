@@ -3,6 +3,12 @@
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 and [human-readable changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 1.3.5
+
+### Fixed
+
+- Added Reset_connection
+
 ## 1.3.4
 
 ### Fixed
