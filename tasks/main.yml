@@ -34,6 +34,8 @@
       until: job_result.finished
       retries: 60
       delay: 1
+    - name: reset
+      meta: reset_connection
   when: ansible_connection == "ssh" and register_choco_environment_path.changed
 
 - name: Setup chocolatey source
