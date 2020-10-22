@@ -25,6 +25,8 @@
         state: restarted
       async: 60
       poll: 0
+      notify:
+        - reset connection
       register: register_sshd_restart
 
     - name: wait for connectivity to be resumed after sshd restart
@@ -34,9 +36,11 @@
       until: job_result.finished
       retries: 60
       delay: 1
-    - name: reset
-      meta: reset_connection
+
   when: ansible_connection == "ssh" and register_choco_environment_path.changed
+
+- name: flush handlers
+  meta: flush_handlers
 
 - name: Setup chocolatey source
   win_chocolatey_source:
