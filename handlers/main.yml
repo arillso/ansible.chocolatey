@@ -1,2 +1,5 @@
 ---
 # handlers file for arillso.chocolatey
+
+- name: reset connection
+  meta: reset_connection
